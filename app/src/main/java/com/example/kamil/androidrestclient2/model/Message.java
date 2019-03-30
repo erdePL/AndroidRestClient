@@ -1,5 +1,6 @@
 package com.example.kamil.androidrestclient2.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -10,12 +11,16 @@ import java.util.Date;
 
 public class Message {
     @SerializedName("id")
+    @Expose
     private long id;
     @SerializedName("messageContent")
+    @Expose
     private String messageContent;
     @SerializedName("creationDate")
+    @Expose
     private Date creationDate;
     @SerializedName("author")
+    @Expose
     private String author;
     public Message() {
     }

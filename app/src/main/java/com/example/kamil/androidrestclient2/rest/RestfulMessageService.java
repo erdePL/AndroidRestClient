@@ -11,24 +11,30 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 /**
  * Created by Kamil on 29/03/2019.
  */
 
 public interface RestfulMessageService {
-    @GET("messages/1")
-    Call<Message> getFirstMessage();
+    @GET("messages/{messageId}")
+    Call<Message> getMessage(@Path ("messageId") int id);
+
     @GET("messages")
-    Call<List<Message>> getMessages();
-    @DELETE("messages/1")
-    Call<Message> deleteFirstMessage();
-    @DELETE("messages")
-    Call<String> deleteAllMessages();
-    @Headers("Accept: application/json")
+    Call<List<Message>> getAllMessages();
+
+    @Headers("Accept: application/json") //TODO I think I can delete that line
     @POST("messages")
     Call<Message> addMessage(@Body Message message);
-    @PUT("messages/1")
-    Call<Message> editMessage(@Body Message message);
+
+    @PUT("messages/{messageId}")
+    Call<Message> editMessage(@Path ("messageId") int id, @Body Message message);
+
+    @DELETE("messages/{messageId}")
+    Call<Message> deleteMessage(@Path ("messageId") int id);
+
+    @DELETE("messages")
+    Call<String> deleteAllMessages();
 
 }

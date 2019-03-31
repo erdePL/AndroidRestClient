@@ -44,107 +44,102 @@ public class MainActivity extends AppCompatActivity {
         }
         RestfulMessageService restfulMessageService = retrofit.create(RestfulMessageService.class);
 
-        //hl EDIT MESSAGE
-        Message messageToUpdate = new Message(0,"Message EDITED with Retrofit", "Still the Cat");
-        Call<Message> editMessageCallback = restfulMessageService.editMessage(messageToUpdate);
-        editMessageCallback.enqueue(new Callback<Message>() {
-            @Override
-            public void onResponse(Call<Message> call, Response<Message> response) {
-                String message = response.body().getMessageContent();
-                textView.setText(message);
-                Log.d(TAG, "Seems like we have added a messages !" );
+//        hl GET SIGNLE MESSAGE CALLBACK
+//        Call<Message> singleMessageCall = restfulMessageService.getMessage(2);
+//        singleMessageCall.enqueue(new Callback<Message>() {
+//            @Override
+//            public void onResponse(Call<Message> call, Response<Message> response) {
+//                Message message = response.body();
+//                textView.setText(message.getMessageContent());
+//                Log.d(TAG, "Seems like we have a message !" );
+//
+//            }
+//            @Override
+//            public void onFailure(Call<Message> call, Throwable throwable) {
+//                Log.e(TAG, throwable.toString());
+//            }
+//        });
 
-            }
-            @Override
-            public void onFailure(Call<Message> call, Throwable throwable) {
-                Log.e(TAG, throwable.toString());
-            }
-        });
+//        hl GET ALL MESSAGES CALLBACK
+//        Call<List<Message>> allMessagesCallback = restfulMessageService.getAllMessages();
+//        allMessagesCallback.enqueue(new Callback<List<Message>>() {
+//            @Override
+//            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+//                List<Message> messages = response.body();
+//                textView.setText(messages.get(0).getMessageContent());
+//                Log.d(TAG, "Seems like we have a message !" );
+//
+//            }
+//            @Override
+//            public void onFailure(Call<List<Message>> call, Throwable throwable) {
+//                Log.e(TAG, throwable.toString());
+//            }
+//        });
 
-        /*hl ADD MESSAGE
-        Message messageToAdd = new Message(0,"Message added with Retrofit", "Still the Cat");
-        Call<Message> addMessageCallback = restfulMessageService.addMessage(messageToAdd);
-        addMessageCallback.enqueue(new Callback<Message>() {
-            @Override
-            public void onResponse(Call<Message> call, Response<Message> response) {
-                String message = response.body().getMessageContent();
-                textView.setText(message);
-                Log.d(TAG, "Seems like we have added a messages !" );
+//        hl ADD MESSAGE
+//        Message messageToAdd = new Message(0,"Message added with Retrofit", "Still the Cat");
+//        Call<Message> addMessageCallback = restfulMessageService.addMessage(messageToAdd);
+//        addMessageCallback.enqueue(new Callback<Message>() {
+//            @Override
+//            public void onResponse(Call<Message> call, Response<Message> response) {
+//                String message = response.body().getMessageContent();
+//                textView.setText(message);
+//                Log.d(TAG, "Seems like we have added a messages !" );
+//
+//            }
+//            @Override
+//            public void onFailure(Call<Message> call, Throwable throwable) {
+//                Log.e(TAG, throwable.toString());
+//            }
+//        });
 
-            }
-            @Override
-            public void onFailure(Call<Message> call, Throwable throwable) {
-                Log.e(TAG, throwable.toString());
-            }
-        });
-        */
+//        hl EDIT MESSAGE
+//        Message messageToUpdate = new Message(0,"Message EDITED with Retrofit", "Still the Cat");
+//        Call<Message> editMessageCallback = restfulMessageService.editMessage(1, messageToUpdate);
+//        editMessageCallback.enqueue(new Callback<Message>() {
+//            @Override
+//            public void onResponse(Call<Message> call, Response<Message> response) {
+//                String message = response.body().getMessageContent();
+//                textView.setText(message);
+//                Log.d(TAG, "Seems like we have added a messages !" );
+//
+//            }
+//            @Override
+//            public void onFailure(Call<Message> call, Throwable throwable) {
+//                Log.e(TAG, throwable.toString());
+//            }
+//        });
 
-        /* hl DELETE ALL MESSAGES
-        Call<String> deleteFirstMessageCallback = restfulMessageService.deleteAllMessages();
-        deleteFirstMessageCallback.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String message = response.body();
-                textView.setText(message);
-                Log.d(TAG, "Seems like we have deleted all the messages !" );
+//        hl DELETE MESSAGE
+//        Call<Message> deleteFirstMessageCallback = restfulMessageService.deleteMessage(1);
+//        deleteFirstMessageCallback.enqueue(new Callback<Message>() {
+//            @Override
+//            public void onResponse(Call<Message> call, Response<Message> response) {
+//                Message message = response.body();
+//                textView.setText(message.getMessageContent());
+//                Log.d(TAG, "Seems like we have deleted a message !" );
+//
+//            }
+//            @Override
+//            public void onFailure(Call<Message> call, Throwable throwable) {
+//                Log.e(TAG, throwable.toString());
+//            }
+//        });
 
-            }
-            @Override
-            public void onFailure(Call<String> call, Throwable throwable) {
-                Log.e(TAG, throwable.toString());
-            }
-        });
-        */
-
-        /* hl DELETE FIRST MESSAGE
-        Call<Message> deleteFirstMessageCallback = restfulMessageService.deleteFirstMessage();
-        deleteFirstMessageCallback.enqueue(new Callback<Message>() {
-            @Override
-            public void onResponse(Call<Message> call, Response<Message> response) {
-                Message message = response.body();
-                textView.setText(message.getMessageContent());
-                Log.d(TAG, "Seems like we have deleted a message !" );
-
-            }
-            @Override
-            public void onFailure(Call<Message> call, Throwable throwable) {
-                Log.e(TAG, throwable.toString());
-            }
-        });
-        */
-
-        /* hl ALL MESSAGES CALLBACK
-        Call<List<Message>> allMessagesCallback = restfulMessageService.getMessages();
-        allMessagesCallback.enqueue(new Callback<List<Message>>() {
-            @Override
-            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                List<Message> messages = response.body();
-                textView.setText(messages.get(0).getMessageContent());
-                Log.d(TAG, "Seems like we have a message !" );
-
-            }
-            @Override
-            public void onFailure(Call<List<Message>> call, Throwable throwable) {
-                Log.e(TAG, throwable.toString());
-            }
-        });
-        */
-
-        /* hl SIGNLE MESSAGE CALLBACK
-        Call<Message> singleMessageCall = restfulMessageService.getFirstMessage();
-        singleMessageCall.enqueue(new Callback<Message>() {
-            @Override
-            public void onResponse(Call<Message> call, Response<Message> response) {
-                Message message = response.body();
-                textView.setText(message.getMessageContent());
-                Log.d(TAG, "Seems like we have a message !" );
-
-            }
-            @Override
-            public void onFailure(Call<Message> call, Throwable throwable) {
-                Log.e(TAG, throwable.toString());
-            }
-        });
-        */
+//        hl DELETE ALL MESSAGES
+//        Call<String> deleteFirstMessageCallback = restfulMessageService.deleteAllMessages();
+//        deleteFirstMessageCallback.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                String message = response.body();
+//                textView.setText(message);
+//                Log.d(TAG, "Seems like we have deleted all the messages !" );
+//
+//            }
+//            @Override
+//            public void onFailure(Call<String> call, Throwable throwable) {
+//                Log.e(TAG, throwable.toString());
+//            }
+//        });
     }
 }

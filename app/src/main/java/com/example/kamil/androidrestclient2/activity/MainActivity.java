@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    public static final String BASE_URL = "http://25c07069.ngrok.io/RestfulMessageService/webapi/";
+    public static final String BASE_URL = "http://c6259365.ngrok.io/RestfulMessageService/webapi/";
     private static Retrofit retrofit = null;
     private TextView textView;
 
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
         RestfulMessageService restfulMessageService = retrofit.create(RestfulMessageService.class);
 
+        //hl EDIT MESSAGE
         Message messageToUpdate = new Message(0,"Message EDITED with Retrofit", "Still the Cat");
         Call<Message> editMessageCallback = restfulMessageService.editMessage(messageToUpdate);
         editMessageCallback.enqueue(new Callback<Message>() {

@@ -1,4 +1,4 @@
-package com.example.kamil.androidrestclient2.rest;
+package com.example.kamil.androidrestclient2.restServiceInterface;
 
 import com.example.kamil.androidrestclient2.model.Message;
 

@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    public static final String BASE_URL = "http://4adbb108.ngrok.io/RestfulMessageService/webapi/";
+    public static final String BASE_URL = "http://ffdc0152.ngrok.io/RestfulMessageService/webapi/";
     private static Retrofit retrofit = null;
     private TextView textView;
     private Button button;
@@ -36,13 +36,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 initializeConnection();
-//                getSingleMessageAndShow(6);
+                getSingleMessageAndShow(6);
+//                updateMessageAndShow(1,"UPDATED from android", "El Kocurro");
+//                deleteMessageAndShow(2);
 //                getAllMessagesAndShow();
 //                addMessageAndShow("Added from android", "El Kocurro");
-//                updateMessageAndShow(14,"UPDATED from android", "El Kocurro");
-//                deleteMessageAndShow(15);
-                deleteAllMessagesAndShowResponse();
-
+//                deleteAllMessagesAndShowResponse();
             }
         });
     }
@@ -65,7 +64,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
                 Message message = response.body();
-                textView.setText(message.getMessageContent());
+                StringBuilder sb = new StringBuilder();
+                //TODO throws nullpointer if there are no such message in service
+                sb.append(message.getId() + ": ").append(message.getMessageContent() + ", ")
+                        .append(message.getAuthor() + ", ").append(message.getCreationDate() + "\n");
+                textView.setText(sb.toString());
             }
             @Override
             public void onFailure(Call<Message> call, Throwable throwable) {
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 List<Message> messages = response.body();
+                //TODO throws nullpointer if there are no messages in service
                 StringBuilder sb = new StringBuilder();
                 for(int i = 0; i<messages.size(); i++){
                     sb.append(messages.get(i).getId() + ": ").append(messages.get(i).getMessageContent() + ", ")
@@ -150,8 +154,8 @@ public class MainActivity extends AppCompatActivity {
         deleteFirstMessageCallback.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                String message = response.body();
-                textView.setText(message);
+                String responseMessage = response.body();
+                textView.setText(responseMessage);
             }
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {

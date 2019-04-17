@@ -1,6 +1,6 @@
-package com.example.kamil.androidrestclient2.restServiceInterface;
+package com.example.kamil.androidrestclient2.callignWebService.restServiceInterface;
 
-import com.example.kamil.androidrestclient2.model.Message;
+import com.example.kamil.androidrestclient2.callignWebService.dataModel.Message;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import retrofit2.http.Path;
 
 public interface RestfulMessageService {
     @GET("messages/{messageId}")
-    Call<Message> getMessage(@Path ("messageId") int id);
+    Call<Message> getMessage(@Path ("messageId") long id);
 
     @GET("messages")
     Call<List<Message>> getAllMessages();
@@ -29,10 +29,10 @@ public interface RestfulMessageService {
     Call<Message> addMessage(@Body Message message);
 
     @PUT("messages/{messageId}")
-    Call<Message> editMessage(@Path ("messageId") int id, @Body Message message);
+    Call<Message> editMessage(@Path ("messageId") long id, @Body Message message);
 
     @DELETE("messages/{messageId}")
-    Call<Message> deleteMessage(@Path ("messageId") int id);
+    Call<Message> deleteMessage(@Path ("messageId") long id);
 
     @DELETE("messages")
     Call<String> deleteAllMessages();

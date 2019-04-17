@@ -1,15 +1,12 @@
-package com.example.kamil.androidrestclient2.model;
+package com.example.kamil.androidrestclient2.callignWebService.dataModel;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 import java.util.Date;
 
-/**
- * Created by Kamil on 29/03/2019.
- */
-
-public class Message {
+public class Message implements Parcelable {
     @SerializedName("id")
     @Expose
     private long id;
@@ -30,7 +27,32 @@ public class Message {
         this.creationDate = new Date();
         this.author = author;
     }
+    protected Message(Parcel in) {
+        id = in.readLong();
+        messageContent = in.readString();
+        author = in.readString();
+    }
+    public static final Creator<Message> CREATOR = new Creator<Message>() {
+        @Override
+        public Message createFromParcel(Parcel in) {
+            return new Message(in);
+        }
+        @Override
+        public Message[] newArray(int size) {
+            return new Message[size];
+        }
+    };
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(messageContent);
+        dest.writeString(author);
+    }
     public long getId() {
         return id;
     }
